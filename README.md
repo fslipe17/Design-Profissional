@@ -4,9 +4,9 @@ Sistema de e-commerce em Python para terminal, desenvolvido em equipe na discipl
 **Design Profissional** (Universidade Positivo) usando Git e GitHub.
 
 ## Integrantes
-- Nome 1 (@usuario-github-1)
-- Nome 2 (@usuario-github-2)
-- Nome 3 (@usuario-github-3)
+- Nome 1 (@Brunaocoding)
+- Nome 2 (@fslipe17)
+- Nome 3 (@rissinhu)
 
 ## Como executar
 Requisito: Python 3.8 ou superior.
