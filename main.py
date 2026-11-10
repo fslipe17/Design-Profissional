@@ -11,6 +11,7 @@ from carrinho import (
 )
 
 
+
 def mostrar_menu():
     print("\n===== MINI E-COMMERCE =====")
     print("1 - Cadastrar produto")
@@ -22,6 +23,27 @@ def mostrar_menu():
     print("7 - Buscar produto por nome")
     print("0 - Sair")
 
+def buscar_produto_por_nome(produtos):
+    print("\n--- Buscar produto por nome ---")
+    termo = input("Digite o nome ou parte do nome: ").strip().lower()
+    if not termo:
+        print("Digite um nome para realizar a busca.")
+        return
+    encontrados = [
+        p for p in produtos
+        if termo in p["nome"].lower()
+    ]
+    if not encontrados:
+        print("Nenhum produto encontrado.")
+        return
+    print(f"\n{len(encontrados)} produto(s) encontrado(s):")
+    print(f"{'Cod':<5}{'Nome':<28}{'Preco':>12}{'Estoque':>10}")
+    for p in encontrados:
+        print(
+            f"{p['id']:<5}{p['nome']:<28}"
+            f"{formatar_preco(p['preco']):>12}"
+            f"{p['estoque']:>10}"
+        )
 
 def buscar_produto_por_nome(produtos):
     print("\n--- Buscar produto por nome ---")
