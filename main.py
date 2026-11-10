@@ -1,8 +1,15 @@
+
 """Mini E-commerce - ponto de entrada do programa (menu principal)."""
-from entrada import ler_inteiro
-from produtos import carregar_produtos, cadastrar_produto, listar_produtos, buscar_produto_por_nome
-from carrinho import (adicionar_ao_carrinho, ver_carrinho,
-                      remover_do_carrinho, finalizar_compra)
+
+from entrada import ler_inteiro, formatar_preco
+from produtos import carregar_produtos, cadastrar_produto, listar_produtos
+from carrinho import (
+    adicionar_ao_carrinho,
+    ver_carrinho,
+    remover_do_carrinho,
+    finalizar_compra
+)
+
 
 
 def mostrar_menu():
@@ -38,12 +45,42 @@ def buscar_produto_por_nome(produtos):
             f"{p['estoque']:>10}"
         )
 
+def buscar_produto_por_nome(produtos):
+    print("\n--- Buscar produto por nome ---")
+    termo = input("Digite o nome ou parte do nome: ").strip().lower()
+
+    if not termo:
+        print("Digite um nome para realizar a busca.")
+        return
+
+    encontrados = [
+        p for p in produtos
+        if termo in p["nome"].lower()
+    ]
+
+    if not encontrados:
+        print("Nenhum produto encontrado.")
+        return
+
+    print(f"\n{len(encontrados)} produto(s) encontrado(s):")
+    print(f"{'Cod':<5}{'Nome':<28}{'Preco':>12}{'Estoque':>10}")
+
+    for p in encontrados:
+        print(
+            f"{p['id']:<5}{p['nome']:<28}"
+            f"{formatar_preco(p['preco']):>12}"
+            f"{p['estoque']:>10}"
+        )
+
+
 def main():
     produtos = carregar_produtos()
     carrinho = []
+
     while True:
         mostrar_menu()
         opcao = ler_inteiro("Escolha uma opcao: ", minimo=0, maximo=7)
+
         if opcao == 1:
             cadastrar_produto(produtos)
         elif opcao == 2:
@@ -65,3 +102,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
